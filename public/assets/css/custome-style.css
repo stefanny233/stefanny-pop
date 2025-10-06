@@ -1,0 +1,8 @@
+@font-face {
+    font-family: 'ZalandoSans';
+    src: url('assets/fonts/ZalandoSans.ttf');
+}
+
+.font-custom{
+    font-family: 'ZalandoSans';
+}

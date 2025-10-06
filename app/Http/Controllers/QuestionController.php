@@ -32,8 +32,8 @@ class QuestionController extends Controller
 		    'email' => ['required','email'],
 		    'pertanyaan' => 'required|max:300|min:8',
 		],[
-            'Nama.required' => 'Nama wajib diisi',
-            'Email.email' => 'Format email tidak valid',
+            'nama.required' => 'Nama wajib diisi',
+            'email.email' => 'Format email tidak valid',
         ]);
 
         //dd($request->all());
