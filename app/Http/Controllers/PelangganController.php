@@ -13,11 +13,14 @@ class PelangganController extends Controller
     public function index(Request $request)
     {
         $filterableColumns = ['gender'];
-        $searchableColumns = ['first_name','last_name','birthday','email'];
 
-		$data['dataPelanggan'] = Pelanggan::filter($request, $filterableColumns)->paginate(10)
-					->withQueryString();
-		return view('admin.pelanggan.index',$data);
+        $searchableColumns = ['first_name', 'last_name', 'email'];
+
+        $data['dataPelanggan'] = Pelanggan::filter($request, $filterableColumns)
+            ->search($request, $searchableColumns)
+            ->paginate(10)
+            ->withQueryString();
+        return view('admin.pelanggan.index', $data);
     }
 
     /**
@@ -60,7 +63,8 @@ class PelangganController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $data['dataPelanggan'] = Pelanggan::findOrFail($id);
+        return view('admin.pelanggan.edit', $data);
     }
 
     /**
@@ -68,7 +72,20 @@ class PelangganController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $pelanggan = Pelanggan::findOrFail($id);
+
+        $data = $request->validate([
+            'first_name' => 'required',
+            'last_name' => 'required',
+            'birthday' => 'required|date',
+            'gender' => 'required|in:Male,Female',
+            'email' => 'required|email|unique:pelanggan,email,' . $id . ',pelanggan_id',
+            'phone' => 'required'
+        ]);
+
+        $pelanggan->update($data);
+
+        return redirect()->route('pelanggan.index')->with('success', 'Data pelanggan berhasil diupdate!');
     }
 
     /**
@@ -76,6 +93,9 @@ class PelangganController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $pelanggan = Pelanggan::findOrFail($id);
+        $pelanggan->delete();
+
+        return redirect()->route('pelanggan.index')->with('success', 'Data pelanggan berhasil dihapus!');
     }
 }

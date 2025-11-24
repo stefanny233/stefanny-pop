@@ -1,5 +1,4 @@
-@extends('layouts.admin.app')
-@section('content')
+<?php $__env->startSection('content'); ?>
 
 <div class="py-4">
     <nav aria-label="breadcrumb" class="d-none d-md-inline-block">
@@ -23,7 +22,7 @@
             <p class="mb-0">List seluruh user</p>
         </div>
         <div>
-            <a href="{{ route('user.create') }}" class="btn btn-success text-white">
+            <a href="<?php echo e(route('user.create')); ?>" class="btn btn-success text-white">
                 Tambah User
             </a>
         </div>
@@ -37,10 +36,10 @@
             <div class="card-body">
 
                 <!-- SEARCH -->
-                <form method="GET" action="{{ route('user.index') }}">
+                <form method="GET" action="<?php echo e(route('user.index')); ?>">
                     <div class="input-group mb-3">
                         <input type="text" name="search" class="form-control" placeholder="Cari User..."
-                            value="{{ request('search') }}">
+                            value="<?php echo e(request('search')); ?>">
                         <button class="btn btn-primary">Cari</button>
                     </div>
                 </form>
@@ -58,48 +57,51 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($dataUser as $item)
+                            <?php $__currentLoopData = $dataUser; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $item): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                 <tr>
                                     <td>
-                                        @if ($item->profile_picture)
-                                            <img src="{{ asset('storage/' . $item->profile_picture) }}"
+                                        <?php if($item->profile_picture): ?>
+                                            <img src="<?php echo e(asset('storage/' . $item->profile_picture)); ?>"
                                                  alt="Profile Picture"
                                                  class="rounded-circle"
                                                  width="40"
                                                  height="40"
                                                  style="object-fit: cover;">
-                                        @else
+                                        <?php else: ?>
                                             <div class="rounded-circle bg-secondary d-flex align-items-center justify-content-center text-white fw-bold"
                                                  style="width: 40px; height: 40px;">
-                                                {{ strtoupper(substr($item->name, 0, 1)) }}
-                                            </div>
-                                        @endif
-                                    </td>
-                                    <td>{{ $item->name }}</td>
-                                    <td>{{ $item->email }}</td>
-                                    <td>
-                                        <span class="badge {{ $item->role == 'admin' ? 'bg-danger' : 'bg-primary' }}">
-                                            {{ ucfirst($item->role) }}
-                                        </span>
-                                    </td>
-                                    <td>
-                                        <span class="badge {{ $item->status == 'active' ? 'bg-success' : 'bg-warning' }}">
-                                            {{ ucfirst($item->status) }}
-                                        </span>
-                                    </td>
-                                    <td>
-                                        <a href="{{ route('user.edit', $item->id) }}" class="btn btn-warning btn-sm">Edit</a>
+                                                <?php echo e(strtoupper(substr($item->name, 0, 1))); ?>
 
-                                        <form action="{{ route('user.destroy', $item->id) }}" class="d-inline"
+                                            </div>
+                                        <?php endif; ?>
+                                    </td>
+                                    <td><?php echo e($item->name); ?></td>
+                                    <td><?php echo e($item->email); ?></td>
+                                    <td>
+                                        <span class="badge <?php echo e($item->role == 'admin' ? 'bg-danger' : 'bg-primary'); ?>">
+                                            <?php echo e(ucfirst($item->role)); ?>
+
+                                        </span>
+                                    </td>
+                                    <td>
+                                        <span class="badge <?php echo e($item->status == 'active' ? 'bg-success' : 'bg-warning'); ?>">
+                                            <?php echo e(ucfirst($item->status)); ?>
+
+                                        </span>
+                                    </td>
+                                    <td>
+                                        <a href="<?php echo e(route('user.edit', $item->id)); ?>" class="btn btn-warning btn-sm">Edit</a>
+
+                                        <form action="<?php echo e(route('user.destroy', $item->id)); ?>" class="d-inline"
                                             method="POST">
-                                            @csrf
-                                            @method('DELETE')
+                                            <?php echo csrf_field(); ?>
+                                            <?php echo method_field('DELETE'); ?>
                                             <button class="btn btn-danger btn-sm"
                                                 onclick="return confirm('Yakin hapus user?')">Hapus</button>
                                         </form>
                                     </td>
                                 </tr>
-                            @endforeach
+                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
 
                         </tbody>
                     </table>
@@ -107,7 +109,8 @@
 
                 <!-- PAGINATION -->
                 <div class="mt-3">
-                    {{ $dataUser->links('pagination::bootstrap-5') }}
+                    <?php echo e($dataUser->links('pagination::bootstrap-5')); ?>
+
                 </div>
 
             </div>
@@ -115,4 +118,6 @@
 
     </div>
 </div>
-@endsection
+<?php $__env->stopSection(); ?>
+
+<?php echo $__env->make('layouts.admin.app', array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?><?php /**PATH C:\Budi\laragon-6.0-minimal\www\stefanny-pop\resources\views/admin/user/index.blade.php ENDPATH**/ ?>
