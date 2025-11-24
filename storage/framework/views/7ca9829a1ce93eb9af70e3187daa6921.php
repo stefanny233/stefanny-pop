@@ -23,3 +23,4 @@
         </div>
     </div>
 </footer>
+<?php /**PATH C:\Budi\laragon-6.0-minimal\www\stefanny-pop\resources\views/layouts/admin/footer.blade.php ENDPATH**/ ?>

@@ -68,7 +68,7 @@
     <link type="text/css" href="<?php echo e(asset('assets-admin/vendor/notyf/notyf.min.css')); ?>" rel="stylesheet">
 
     <!-- Volt CSS -->
-    <?php echo $__env->make('layout.admin.css', array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?>
+    <?php echo $__env->make('layouts.admin.css', array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?>
 
     <!-- NOTICE: You can use the _analytics.html partial to include production code specific code & trackers -->
 
@@ -79,9 +79,9 @@
     <!-- NOTICE: You can use the _analytics.html partial to include production code specific code & trackers -->
 
 
-    <?php echo $__env->make('layout.admin.header', array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?>
+    <?php echo $__env->make('layouts.admin.header', array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?>
 
-    <?php echo $__env->make('layout.admin.sidebar', array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?>
+    <?php echo $__env->make('layouts.admin.sidebar', array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?>
 
 
     <main class="content">
@@ -89,11 +89,11 @@
         <?php echo $__env->yieldContent('content'); ?>
         <!-- end main content -->
 
-        <?php echo $__env->make('layout.admin.footer', array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?>
+        <?php echo $__env->make('layouts.admin.footer', array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?>
     </main>
 
     <!-- Core -->
-    <?php echo $__env->make('layout.admin.js', array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?>
+    <?php echo $__env->make('layouts.admin.js', array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?>
 
     <!-- Slider -->
     <script src="<?php echo e(asset('assets-admin')); ?>/vendor/nouislider/distribute/nouislider.min.js"></script>

@@ -68,7 +68,7 @@
     <link type="text/css" href="{{ asset('assets-admin/vendor/notyf/notyf.min.css') }}" rel="stylesheet">
 
     <!-- Volt CSS -->
-    @include('layout.admin.css')
+    @include('layouts.admin.css')
 
     <!-- NOTICE: You can use the _analytics.html partial to include production code specific code & trackers -->
 
@@ -79,9 +79,9 @@
     <!-- NOTICE: You can use the _analytics.html partial to include production code specific code & trackers -->
 
 
-    @include('layout.admin.header')
+    @include('layouts.admin.header')
 
-    @include('layout.admin.sidebar')
+    @include('layouts.admin.sidebar')
 
 
     <main class="content">
@@ -89,11 +89,11 @@
         @yield('content')
         <!-- end main content -->
 
-        @include('layout.admin.footer')
+        @include('layouts.admin.footer')
     </main>
 
     <!-- Core -->
-    @include('layout.admin.js')
+    @include('layouts.admin.js')
 
     <!-- Slider -->
     <script src="{{ asset('assets-admin') }}/vendor/nouislider/distribute/nouislider.min.js"></script>
